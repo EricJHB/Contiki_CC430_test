@@ -12,6 +12,8 @@ doc/html
 patches-*
 tools/tunslip6
 
+*.dep
+
 Debug
 
 settings
