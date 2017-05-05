@@ -32,13 +32,13 @@ led_init()
 static void
 led_on()
 {
-  leds_on(LEDS_ALL);
+  leds_on(LEDS_GREEN);
 }
 
 static void
 led_off()
 {  
-  leds_off(LEDS_ALL);
+  leds_off(LEDS_GREEN);
 }
 
 

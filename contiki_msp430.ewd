@@ -52,7 +52,7 @@
                 </option>
                 <option>
                     <name>DdfOverride</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>DdfFileName</name>
