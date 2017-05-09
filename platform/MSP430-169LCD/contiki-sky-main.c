@@ -1,5 +1,5 @@
 /*
- * Contiki-2.5 test
+ * Contiki-3.0 test
  * for CC430F5137
  * ERIC
  * date: 2017/04/25
