@@ -42,33 +42,47 @@
 
 #include "contiki-conf.h"
 //#include "dev/xmem.h"
+#include "HAL/INFlashWR.h"
+#include <string.h>
 
 /* Coffee configuration parameters. */
-#define COFFEE_SECTOR_SIZE		65536UL
-#define COFFEE_PAGE_SIZE		256UL
-#define COFFEE_START			COFFEE_SECTOR_SIZE
-#define COFFEE_SIZE			(1024UL * 1024UL - COFFEE_START)
-#define COFFEE_NAME_LENGTH		16
-#define COFFEE_MAX_OPEN_FILES		6
+#define COFFEE_SECTOR_SIZE		512UL//65536UL
+#define COFFEE_PAGE_SIZE		512UL//256UL
+#define COFFEE_START			0x8000+40*COFFEE_SECTOR_SIZE//COFFEE_SECTOR_SIZE
+#define COFFEE_SIZE			0x1000//4096 byte//(10UL * 1024UL)//10kb
+#define COFFEE_NAME_LENGTH		16//8//16
+#define COFFEE_MAX_OPEN_FILES		2//6
 #define COFFEE_FD_SET_SIZE		8
-#define COFFEE_LOG_TABLE_LIMIT		256
-#define COFFEE_DYN_SIZE			4*1024
-#define COFFEE_LOG_SIZE			1024
+#define COFFEE_LOG_TABLE_LIMIT		128//256
+#define COFFEE_DYN_SIZE			512//4*512//4*1024
+#define COFFEE_LOG_SIZE			512//512//1024
+
+#define FLASH_PAGE_SIZE  COFFEE_SECTOR_SIZE
 
 #define COFFEE_IO_SEMANTICS		1
 #define COFFEE_APPEND_ONLY		0
 #define COFFEE_MICRO_LOGS		1
 
+
+
+
 /* Flash operations. */
 #define COFFEE_WRITE(buf, size, offset)				\
-		xmem_pwrite((char *)(buf), (size), COFFEE_START + (offset))
+		stm32w_flash_write(COFFEE_START + (offset),(char *)(buf), (size))//xmem_pwrite((char *)(buf), (size), COFFEE_START + (offset))
 
 #define COFFEE_READ(buf, size, offset)				\
-  		xmem_pread((char *)(buf), (size), COFFEE_START + (offset))
+  		stm32w_flash_read(COFFEE_START + (offset),(char *)(buf), (size))//xmem_pread((char *)(buf), (size), COFFEE_START + (offset))
 
 #define COFFEE_ERASE(sector)					\
-  		xmem_erase(COFFEE_SECTOR_SIZE, COFFEE_START + (sector) * COFFEE_SECTOR_SIZE)
+  		stm32w_flash_erase(sector)//xmem_erase(COFFEE_SECTOR_SIZE, COFFEE_START + (sector) * COFFEE_SECTOR_SIZE)
 
+void stm32w_flash_read(uint32_t address, void *data, uint32_t length);
+
+void stm32w_flash_erase(uint8_t sector);
+
+void stm32w_flash_write(uint16_t address, const void *data, uint16_t length);
+                  
+                  
 /* Coffee types. */
 typedef int16_t coffee_page_t;
 

@@ -189,6 +189,8 @@ main(int argc, char **argv)
   /*等待初始化完成*/
   clock_delay(20000);
   printf(CONTIKI_VERSION_STRING " started. ");
+  
+  coffee_file_test();
 
 #if !WITH_UIP && !WITH_UIP6
   //uart1_set_input(serial_line_input_byte);

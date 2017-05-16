@@ -2133,6 +2133,18 @@
     <group>
         <name>core</name>
         <group>
+            <name>cfs</name>
+            <file>
+                <name>$PROJ_DIR$\core\cfs\cfs-coffee.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\core\cfs\cfs-coffee.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\core\cfs\cfs.h</name>
+            </file>
+        </group>
+        <group>
             <name>dev</name>
             <file>
                 <name>$PROJ_DIR$\core\dev\battery-sensor.h</name>
@@ -2494,9 +2506,15 @@
                     <name>$PROJ_DIR$\platform\MSP430-169LCD\HAL\hal_pmm.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\platform\MSP430-169LCD\HAL\INFlashWR.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\platform\MSP430-169LCD\HAL\RF1A.c</name>
                 </file>
             </group>
+            <file>
+                <name>$PROJ_DIR$\platform\MSP430-169LCD\cfs-coffee-arch.c</name>
+            </file>
         </group>
         <file>
             <name>$PROJ_DIR$\platform\MSP430-169LCD\cfs-coffee-arch.h</name>
